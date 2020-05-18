@@ -1,0 +1,44 @@
+<div class="ep_password_change-modal" id="ep_password_change-modal">
+    <div class="ep_password_change-modal-content">
+        <span class="ep_password_change-modal-close" id="ep_password_change-modal-close">&times;</span>
+        <div class="left" data-l10n-id="ep_password_change.password_prompt"></div>
+        <div class="right">
+        <input type="password" id="ep_password_change-password" maxlength="100" autofocus x-webkit-speech>
+        </div>
+        <div class="left" data-l10n-id="ep_password_change.repeat_prompt"></div>
+        <div class="right">
+        <input type="password" id="ep_password_change-repeat" maxlength="100" autofocus x-webkit-speech>
+        </div>
+        <button onclick="submitForm()" data-l10n-id="ep_password_change.submit"></button>
+    </div>
+</div>
+    <script>
+    function submitForm() {
+        var password = document.getElementById("ep_password_change-password").value;
+        var repeat = document.getElementById("ep_password_change-repeat").value;
+        if (password !== "" && repeat !== "") {
+            if (password === repeat) {
+                $.ajax({
+                    type: "GET",
+                    url: "/password_change",
+                    data: "password=" + password,
+                    cache: false,
+                    success: function(res) {
+                        if (res == "success") {
+                            alert(window._('ep_password_change.success'));
+                            document.getElementById('ep_password_change-modal').style.display = 'none';
+                            document.getElementById("ep_password_change-password").value = "";
+                            document.getElementById("ep_password_change-repeat").value = "";
+                        } else {
+                            alert(window._('ep_password_change.error'));
+                        }
+                    }
+                });
+            } else {
+                alert(window._('ep_password_change.nomatch'));
+            }
+        }
+        return false;
+    }
+    </script>
+

@@ -1,0 +1,15 @@
+{
+  "name": "ep_password_change",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "ep_hash_auth": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/filehoarder/ep_password_change.git"
+  },
+  "author": "Gerrit Pape <papeg@mail.upb.de>",
+  "license": "AGPLv3"
+}

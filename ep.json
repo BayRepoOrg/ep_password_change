@@ -1,0 +1,12 @@
+{
+  "parts": [
+    {
+      "name": "password_change",
+      "pre": ["ep_hash_auth/ep_hash_auth"],
+      "hooks": {
+        "expressCreateServer" : "ep_password_change/index:registerRoute",
+        "eejsBlock_indexWrapper": "ep_password_change/index"
+      }
+    }
+  ]
+}

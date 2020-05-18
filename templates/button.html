@@ -1,0 +1,15 @@
+<button class="btn btn-primary ep_password_change-btn" id="ep_password_change-btn" data-l10n-id="ep_password_change.button"></button>
+    <script>
+        $('#ep_password_change-btn').click(function() {
+            document.getElementById('ep_password_change-modal').style.display = 'block';
+            submitForm();
+        });
+        $('#ep_password_change-modal-close').click(function() {
+            document.getElementById('ep_password_change-modal').style.display = 'none';
+        });
+        window.onclick = function(e) {
+            if (e.target == document.getElementById('ep_password_change-modal')) {
+                document.getElementById('ep_password_change-modal').style.display = 'none';
+            } 
+        }
+    </script>

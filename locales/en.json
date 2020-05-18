@@ -1,0 +1,9 @@
+{
+    "ep_password_change.submit": "Submit",
+    "ep_password_change.button": "Change Password",
+    "ep_password_change.password_prompt": "Password",
+    "ep_password_change.repeat_prompt": "Repeat Password",
+    "ep_password_change.nomatch": "Passwords do not match",
+    "ep_password_change.success": "Password successfully changed",
+    "ep_password_change.error": "Error changing Password"
+}

@@ -1,0 +1,9 @@
+{
+    "ep_password_change.submit": "Abschicken",
+    "ep_password_change.button": "Passwort Ändern",
+    "ep_password_change.password_prompt": "Passwort",
+    "ep_password_change.repeat_prompt": "Passwort wiederholen",
+    "ep_password_change.nomatch": "Passwörter stimmen nicht überein",
+    "ep_password_change.success": "Passwort erfolgreich geändert",
+    "ep_password_change.error": "Passwort konnte leider nicht geändert werden"
+}
