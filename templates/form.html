@@ -1,6 +1,10 @@
 <div class="ep_password_change-modal" id="ep_password_change-modal">
     <div class="ep_password_change-modal-content">
         <span class="ep_password_change-modal-close" id="ep_password_change-modal-close">&times;</span>
+        <div class="left" data-l10n-id="ep_password_change.current_password_prompt"></div>
+        <div class="right">
+        <input type="password" id="ep_password_change-current-password" maxlength="100" autofocus x-webkit-speech>
+        </div>
         <div class="left" data-l10n-id="ep_password_change.password_prompt"></div>
         <div class="right">
         <input type="password" id="ep_password_change-password" maxlength="100" autofocus x-webkit-speech>
@@ -14,14 +18,15 @@
 </div>
     <script>
     function submitForm() {
+        var current = document.getElementById("ep_password_change-current-password").value;
         var password = document.getElementById("ep_password_change-password").value;
         var repeat = document.getElementById("ep_password_change-repeat").value;
         if (password !== "" && repeat !== "") {
             if (password === repeat) {
                 $.ajax({
-                    type: "GET",
+                    type: "GET", // ?!?
                     url: "/password_change",
-                    data: "password=" + password,
+                    data: "password=" + password + "&current=" + current,
                     cache: false,
                     success: function(res) {
                         if (res == "success") {
@@ -29,6 +34,8 @@
                             document.getElementById('ep_password_change-modal').style.display = 'none';
                             document.getElementById("ep_password_change-password").value = "";
                             document.getElementById("ep_password_change-repeat").value = "";
+                        } else if (res == "wrong_password") {
+                            alert(window._('ep_password_change.wrong_password'));
                         } else {
                             alert(window._('ep_password_change.error'));
                         }

@@ -27,19 +27,34 @@ exports.eejsBlock_indexWrapper = function(hook_name, args, cb) {
 
 exports.registerRoute = function(hook_name, args, cb) {
     args.app.get("/password_change", function(req, res) {
-        if (req.query.password) {
-            var hash = crypto.createHash(hash_typ).update(req.query.password).digest(hash_dig);
+        if (req.query.password && req.query.current) {
             var username = new Buffer.from(req.headers.authorization.split(' ')[1], 'base64').toString().split(":").shift();
             var path = hash_dir + "/" + username + "/" + hash_ext;
 
-            fs.writeFile(path, hash, function(err) {
+            // check current password
+            var path = hash_dir + "/" + username + hash_ext;
+            fs.readFile(path, 'utf8', function(err, contents) {
                 if (err) {
                     console.log(err);
                     res.send("error");
                 } else {
-                    res.send("success");
+                    var hash = crypto.createHash(hash_typ).update(req.query.current).digest(hash_dig);
+                    if (hash != contents) {
+                        res.send("wrong_password");
+                    } else {
+                        // write new hash
+                        var hash = crypto.createHash(hash_typ).update(req.query.password).digest(hash_dig);
+                        fs.writeFile(path, hash, function(err) {
+                            if (err) {
+                                console.log(err);
+                                res.send("error");
+                            } else {
+                                res.send("success");
+                            }
+                        });
+                    }
                 }
             });
-        }
+       }
     });
 };
