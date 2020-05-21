@@ -17,6 +17,17 @@
     </div>
 </div>
     <script>
+    function showForm() {
+        document.getElementById('ep_password_change-modal').style.display = 'block';
+    }
+    function hideForm() {
+        document.getElementById('ep_password_change-modal').style.display = 'none';
+    }
+    function clearForm() {
+        document.getElementById("ep_password_change-current-password").value = "";
+        document.getElementById("ep_password_change-password").value = "";
+        document.getElementById("ep_password_change-repeat").value = "";
+    }
     function submitForm() {
         var current = document.getElementById("ep_password_change-current-password").value;
         var password = document.getElementById("ep_password_change-password").value;
@@ -31,9 +42,8 @@
                     success: function(res) {
                         if (res == "success") {
                             alert(window._('ep_password_change.success'));
-                            document.getElementById('ep_password_change-modal').style.display = 'none';
-                            document.getElementById("ep_password_change-password").value = "";
-                            document.getElementById("ep_password_change-repeat").value = "";
+                            hideForm();
+                            clearForm();
                         } else if (res == "wrong_password") {
                             alert(window._('ep_password_change.wrong_password'));
                         } else {
