@@ -8,6 +8,6 @@ HTTP status codes:
 
 204: Password succesfully changed
 401: Current Password is wrong
-422: Unable to change the password
+422: Hash is stored in settings.json file
 500: Internal Server Error
-501: Unsupported Server Configuration
+501: Hash File is not writable

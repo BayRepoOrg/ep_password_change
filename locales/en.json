@@ -7,5 +7,6 @@
     "ep_password_change.wrong_password": "Current Password is wrong",
     "ep_password_change.nomatch": "Passwords do not match",
     "ep_password_change.success": "Password successfully changed",
-    "ep_password_change.error": "Error changing Password"
+    "ep_password_change.writable_error": "Error changing password - Hash file is not writable",
+    "ep_password_change.error": "Server error - could not change password"
 }

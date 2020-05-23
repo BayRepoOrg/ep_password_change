@@ -31,8 +31,15 @@ exports.registerRoute = function(hook_name, args, cb) {
             var username = req.session.user.username;
             var path = hash_dir + "/" + username + "/" + hash_ext;
 
-            // check current password
             var path = hash_dir + "/" + username + hash_ext;
+            // check if hash file is writeable
+            try {
+                fs.accessSync(path, fs.constants.W_OK);
+            } catch (err) {
+                console.log(path + 'is not writable');
+                res.status(501).send();
+            }
+            // check current password
             fs.readFile(path, 'utf8', function(err, contents) {
                 if (err) {
                     console.log(err);
