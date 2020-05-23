@@ -13,6 +13,7 @@
         <div class="right">
         <input type="password" id="ep_password_change-repeat" maxlength="100" autofocus x-webkit-speech>
         </div>
+        <div id="ep_password_change-match"></div>
         <button onclick="submitForm()" data-l10n-id="ep_password_change.submit"></button>
     </div>
 </div>
@@ -26,6 +27,21 @@
     }
     ['current-password', 'password', 'repeat'].forEach(function(i) {
         addEnterListener(document.getElementById('ep_password_change-' + i));
+    })
+    function addMatchChecker(input) {
+        input.addEventListener('keyup', function(event) {
+            var password = document.getElementById('ep_password_change-password').value;
+            var repeat = document.getElementById('ep_password_change-repeat').value;
+            var match = document.getElementById('ep_password_change-match');
+            if (password !== repeat) {
+                match.textContent = window._('ep_password_change.nomatch');
+            } else {
+                match.textContent = '';
+            }
+        });
+    }
+    ['password', 'repeat'].forEach(function(i) {
+        addMatchChecker(document.getElementById('ep_password_change-' + i));
     })
     function showForm() {
         document.getElementById('ep_password_change-modal').style.display = 'block';
