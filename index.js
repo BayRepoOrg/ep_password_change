@@ -28,7 +28,7 @@ exports.eejsBlock_indexWrapper = function(hook_name, args, cb) {
 exports.registerRoute = function(hook_name, args, cb) {
     args.app.get("/password_change", function(req, res) {
         if (req.query.password && req.query.current) {
-            var username = new Buffer.from(req.headers.authorization.split(' ')[1], 'base64').toString().split(":").shift();
+            var username = req.session.user.username;
             var path = hash_dir + "/" + username + "/" + hash_ext;
 
             // check current password
