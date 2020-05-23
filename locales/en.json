@@ -8,5 +8,6 @@
     "ep_password_change.nomatch": "Passwords do not match",
     "ep_password_change.success": "Password successfully changed",
     "ep_password_change.writable_error": "Error changing password - Hash file is not writable",
+    "ep_password_change.settings_error": "Error changing password - Authentication is not on filesystem",
     "ep_password_change.error": "Server error - could not change password"
 }

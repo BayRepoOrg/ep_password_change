@@ -7,6 +7,7 @@
     "ep_password_change.wrong_password": "Aktuelles Passwort ist falsch",
     "ep_password_change.nomatch": "Passwörter stimmen nicht überein",
     "ep_password_change.success": "Passwort erfolgreich geändert",
-    "ep_password_change.error": "Passwort konnte nicht geändert werden - Hash Datei ist nicht schreibar",
+    "ep_password_change.writable_error": "Passwort konnte nicht geändert werden - Hash Datei ist nicht schreibar",
+    "ep_password_change.settings_error": "Passwort konnte nicht geändert werden - Authentifizierung befindet sich nicht auf dem Dateisystem",
     "ep_password_change.error": "Serverfehler - Passwort konnte leider nicht geändert werden"
 }
