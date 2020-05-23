@@ -17,6 +17,16 @@
     </div>
 </div>
     <script>
+    function addEnterListener(input) {
+        input.addEventListener('keydown', function(event) {
+            if (event.keyCode === 13) {
+                submitForm();
+            }
+        });
+    }
+    ['current-password', 'password', 'repeat'].forEach(function(i) {
+        addEnterListener(document.getElementById('ep_password_change-' + i));
+    })
     function showForm() {
         document.getElementById('ep_password_change-modal').style.display = 'block';
     }
