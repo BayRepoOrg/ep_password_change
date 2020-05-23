@@ -49,14 +49,16 @@
                     url: "/password_change",
                     data: "password=" + password + "&current=" + current,
                     cache: false,
-                    success: function(res) {
-                        if (res == "success") {
+                    statusCode: {
+                        204: function() {
                             alert(window._('ep_password_change.success'));
                             hideForm();
                             clearForm();
-                        } else if (res == "wrong_password") {
+                        },
+                        401: function() {
                             alert(window._('ep_password_change.wrong_password'));
-                        } else {
+                        },
+                        500: function() {
                             alert(window._('ep_password_change.error'));
                         }
                     }

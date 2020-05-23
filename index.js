@@ -36,20 +36,20 @@ exports.registerRoute = function(hook_name, args, cb) {
             fs.readFile(path, 'utf8', function(err, contents) {
                 if (err) {
                     console.log(err);
-                    res.send("error");
+                    res.status(500).send();
                 } else {
                     var hash = crypto.createHash(hash_typ).update(req.query.current).digest(hash_dig);
                     if (hash != contents) {
-                        res.send("wrong_password");
+                        res.status(401).send();
                     } else {
                         // write new hash
                         var hash = crypto.createHash(hash_typ).update(req.query.password).digest(hash_dig);
                         fs.writeFile(path, hash, function(err) {
                             if (err) {
                                 console.log(err);
-                                res.send("error");
+                                res.status(500).send();
                             } else {
-                                res.send("success");
+                                res.status(204).send();
                             }
                         });
                     }
