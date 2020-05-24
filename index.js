@@ -30,8 +30,10 @@ exports.registerRoute = function(hook_name, args, cb) {
         var username = req.session.user.username;
         // check if user is authenticated with settings.json
         if (username in settings.users) {
-            console.log('found ' + username + ' in settings.json');
-            res.status(422).send();
+            if ('password' in settings.users[username] || 'hash' in settings.users[username]) {
+                console.log('found authentication' + username + ' in settings.json');
+                res.status(422).send();
+            }
         }
         if (req.query.password && req.query.current) {
             var path = hash_dir + "/" + username + "/" + hash_ext;
