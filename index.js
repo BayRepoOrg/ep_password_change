@@ -46,28 +46,26 @@ exports.registerRoute = function(hook_name, args, cb) {
                 res.status(501).send();
             }
             // check current password
-            fs.readFile(path, 'utf8', function(err, contents) {
-                if (err) {
-                    console.log(err);
-                    res.status(500).send();
+            try {
+                var contents = fs.readFileSync(path, 'utf8');
+                var hash = crypto.createHash(hash_typ).update(req.query.current).digest(hash_dig);
+                if (hash != contents) {
+                    res.status(401).send();
                 } else {
-                    var hash = crypto.createHash(hash_typ).update(req.query.current).digest(hash_dig);
-                    if (hash != contents) {
-                        res.status(401).send();
-                    } else {
-                        // write new hash
-                        var hash = crypto.createHash(hash_typ).update(req.query.password).digest(hash_dig);
-                        fs.writeFile(path, hash, function(err) {
-                            if (err) {
-                                console.log(err);
-                                res.status(500).send();
-                            } else {
-                                res.status(204).send();
-                            }
-                        });
+                    // write new hash
+                    var hash = crypto.createHash(hash_typ).update(req.query.password).digest(hash_dig);
+                    try {
+                        fs.writeFileSync(path, hash);
+                        res.status(204).send();
+                    } catch (err) {
+                        console.log(err);
+                        res.status(500).send();
                     }
                 }
-            });
+            } catch (err) {
+                console.log(err);
+                res.status(500).send();
+            }
        }
     });
 };
