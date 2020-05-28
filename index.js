@@ -26,7 +26,7 @@ exports.eejsBlock_indexWrapper = function(hook_name, args, cb) {
 };
 
 exports.registerRoute = function(hook_name, args, cb) {
-    args.app.get("/password_change", function(req, res) {
+    args.app.post("/password_change", function(req, res) {
         var username = req.session.user.username;
         // check if user is authenticated with settings.json
         if (username in settings.users) {
@@ -35,6 +35,7 @@ exports.registerRoute = function(hook_name, args, cb) {
                 res.status(422).send();
             }
         }
+        console.log(req);
         if (req.query.password && req.query.current) {
             var path = hash_dir + "/" + username + "/" + hash_ext;
 

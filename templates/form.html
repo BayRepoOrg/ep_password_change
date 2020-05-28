@@ -61,7 +61,7 @@
         if (password !== "" && repeat !== "") {
             if (password === repeat) {
                 $.ajax({
-                    type: "GET", // ?!?
+                    type: "POST",
                     url: "/password_change",
                     data: "password=" + password + "&current=" + current,
                     cache: false,
