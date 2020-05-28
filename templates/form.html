@@ -71,6 +71,9 @@
                             hideForm();
                             clearForm();
                         },
+                        400: function() {
+                            alert(window._('ep_password_change.bad_request'));
+                        },
                         401: function() {
                             alert(window._('ep_password_change.wrong_password'));
                         },

@@ -66,6 +66,8 @@ exports.registerRoute = function(hook_name, args, cb) {
                 console.log(err);
                 res.status(500).send();
             }
+       } else {
+            res.status(400).send();
        }
     });
 };
