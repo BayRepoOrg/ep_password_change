@@ -63,7 +63,7 @@
                 $.ajax({
                     type: "POST",
                     url: "/password_change",
-                    data: "password=" + password + "&current=" + current,
+                    data: "password=" + btoa(password) + "&current=" + btoa(current),
                     cache: false,
                     statusCode: {
                         204: function() {
