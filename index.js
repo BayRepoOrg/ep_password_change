@@ -45,6 +45,8 @@ exports.registerRoute = function(hook_name, args, cb) {
 
         req.on('end', async function() {
             console.log('end', contents);
+            body = JSON.parse(contents);
+            console.log(body);
             res.status(204).send();
         });
        /*
