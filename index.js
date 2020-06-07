@@ -28,6 +28,8 @@ exports.eejsBlock_indexWrapper = function(hook_name, args, cb) {
 exports.registerRoute = function(hook_name, args, cb) {
     args.app.post("/password_change", function(req, res) {
         var username = req.session.user.username;
+        var contents = ''
+
         // check if user is authenticated with settings.json
         if (username in settings.users) {
             if ('password' in settings.users[username] || 'hash' in settings.users[username]) {
@@ -35,7 +37,17 @@ exports.registerRoute = function(hook_name, args, cb) {
                 res.status(422).send();
             }
         }
-        console.log(req);
+ 
+        req.on('data', async function(data) {
+            contents += data;
+            console.log('data', typeof(data), data.toString());
+        });
+
+        req.on('end', async function() {
+            console.log('end', contents);
+            res.status(204).send();
+        });
+       /*
         if (req.query.password && req.query.current) {
             var path = hash_dir + "/" + username + "/" + hash_ext;
             var password = Buffer.from(req.query.password, 'base64').toString('ascii');
@@ -72,5 +84,6 @@ exports.registerRoute = function(hook_name, args, cb) {
        } else {
             res.status(400).send();
        }
+    */
     });
 };
