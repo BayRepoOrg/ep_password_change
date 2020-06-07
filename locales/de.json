@@ -9,6 +9,7 @@
     "ep_password_change.success": "Passwort erfolgreich geändert",
     "ep_password_change.writable_error": "Passwort konnte nicht geändert werden - Hash Datei ist nicht schreibar",
     "ep_password_change.settings_error": "Passwort konnte nicht geändert werden - Authentifizierung befindet sich nicht auf dem Dateisystem",
+    "ep_password_change.no_authentication": "Passwort konnte nicht geändert werden weil es gar keins gibt",
     "ep_password_change.bad_request": "Fehlerhafte Anfrage",
     "ep_password_change.error": "Serverfehler - Passwort konnte leider nicht geändert werden"
 }
