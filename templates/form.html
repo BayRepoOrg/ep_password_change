@@ -13,11 +13,19 @@
         <div class="right">
         <input type="password" id="ep_password_change-repeat" maxlength="100" autofocus x-webkit-speech>
         </div>
-        <div id="ep_password_change-match"></div>
+        <div id="ep_password_change-match" data-l10n-id="ep_password_change.nomatch"></div>
         <button onclick="submitForm()" data-l10n-id="ep_password_change.submit"></button>
     </div>
 </div>
-    <script>
+<style>
+    #ep_password_change-match {
+        visibility: hidden;
+        color: red;
+        padding-top: 8px;
+        padding-bottom: 2px;
+    }
+</style>
+<script>
     function addEnterListener(input) {
         input.addEventListener('keydown', function(event) {
             if (event.keyCode === 13) {
@@ -34,9 +42,9 @@
             var repeat = document.getElementById('ep_password_change-repeat').value;
             var match = document.getElementById('ep_password_change-match');
             if (password !== repeat) {
-                match.textContent = window._('ep_password_change.nomatch');
+                match.style.visibility = 'visible';
             } else {
-                match.textContent = '';
+                match.style.visibility = 'hidden';
             }
         });
     }
@@ -53,6 +61,7 @@
         document.getElementById("ep_password_change-current-password").value = "";
         document.getElementById("ep_password_change-password").value = "";
         document.getElementById("ep_password_change-repeat").value = "";
+        document.getElementById('ep_password_change-match').style.visibility = 'hidden';
     }
     function submitForm() {
         var current = document.getElementById("ep_password_change-current-password").value;
@@ -97,5 +106,4 @@
         }
         return false;
     }
-    </script>
-
+</script>
