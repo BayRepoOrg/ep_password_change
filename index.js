@@ -73,6 +73,7 @@ exports.registerRoute = function(hook_name, args, cb) {
             }
         });
     });
+    cb();
 };
 
 function writeHash(res, path, password, current) {
